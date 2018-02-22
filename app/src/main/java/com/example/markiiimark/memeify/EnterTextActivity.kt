@@ -43,11 +43,19 @@ class EnterTextActivity: AppCompatActivity(), View.OnClickListener {
 
         originalImage = true
 
+        pictureUri = intent.getParcelableExtra<Uri>(IMAGE_URI_KEY)
+        val bitmapWidth = intent.getIntExtra(BITMAP_WIDTH, 100)
+        val bitmapHeight = intent.getIntExtra(BITMAP_HEIGHT, 100)
+
+        pictureUri?.let {
+            val selectedImageBitmap = BitmapResizer.shrinkBitmap(this, it, bitmapWidth, bitmapHeight)
+            selectedPictureImageview.setImageBitmap(selectedImageBitmap)
+        }
     }
 
     override fun onClick(v: View) {
         when(v.id) {
-            R.id.writeTextToImageButton -> {}
+            R.id.writeTextToImageButton -> createMeme()
             R.id.saveImageButton -> {}
             else -> println("No case satisfied")
         }
@@ -134,7 +142,7 @@ class EnterTextActivity: AppCompatActivity(), View.OnClickListener {
         }
 
         val xPos = (bitmapWidth /2).toFloat()
-        var yPos = (bitmapHeight / 7).toFloat()
+        var yPos = (bitmapHeight /7).toFloat()
 
         pictureCanvas.drawText(topText, xPos, yPos, textPaintOutline)
         pictureCanvas.drawText(topText, xPos, yPos, textPaint)

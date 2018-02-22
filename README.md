@@ -13,3 +13,9 @@ It's used to retrieve image data captured from camera.
  Compared to implicit intents, explicit intents are a lot more conservative.
  - describes a specific component that will be created and used
  - typically used for transferring 'explicit' data to another activity
+
+## Handling Intents
+ - For `Uri`, uses `intent.getParcelable<Uri>(TAG)`
+ - For `Int`, uses `intent.getIntExtra(TAG, defaultValue)` 
+
+
