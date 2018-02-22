@@ -24,6 +24,8 @@ class TakePictureActivity: AppCompatActivity(), View.OnClickListener {
 
         pictureImageview.setOnClickListener(this)
         enterTextButton.setOnClickListener(this)
+
+        checkReceivedIntent()
     }
 
     override fun onActivityResult(requestCode: Int,
@@ -86,6 +88,19 @@ class TakePictureActivity: AppCompatActivity(), View.OnClickListener {
             startActivity(enterTextIntent(selectedPhotoPath, pictureImageview.width, pictureImageview.height))
         } else {
             Toaster.show(this, R.string.select_a_picture)
+        }
+    }
+
+    private fun checkReceivedIntent() {
+        val imageReceivedIntent = intent
+        val intentAction = imageReceivedIntent.action
+        val intentType = imageReceivedIntent.type
+
+        if (Intent.ACTION_SEND == intentAction && intentType != null) {
+            if (intentType.startsWith(MIME_TYPE_IMAGE)) {
+                selectedPhotoPath = imageReceivedIntent.getParcelableExtra(Intent.EXTRA_STREAM)
+                setImageViewWithImage()
+            }
         }
     }
 

@@ -27,4 +27,8 @@ sendBroadcast(mediaScanIntent)
 - uses `ACTION_MEDIA_SCANNER_SCAN_FILE` action to attach data (in a form of a Uri)
   to save image files to your local Android file system
 
+## Intent Filtering
+- Add intent-filter tag into your `AndroidManifest.xml`	for Android to be able to do different `ACTION` outside of App.
+- For instance, this app uses `ACTION_SEND` action to get images directly from Photo/Gallery app
+  
 
