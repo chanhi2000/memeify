@@ -9,4 +9,7 @@ A RayWenderlich Android Project for practicing Intent with Kotlin
 It's used to retrieve image data captured from camera.
 
 
-
+## Explicit Intents
+ Compared to implicit intents, explicit intents are a lot more conservative.
+ - describes a specific component that will be created and used
+ - typically used for transferring 'explicit' data to another activity

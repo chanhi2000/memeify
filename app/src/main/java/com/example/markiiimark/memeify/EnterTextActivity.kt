@@ -1,6 +1,8 @@
 package com.example.markiiimark.memeify
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
@@ -18,6 +20,15 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
+fun Context.enterTextIntent(imageUriKey: Uri?,
+                            bitmapWidth: Int,
+                            bitmapHeight: Int): Intent {
+    return Intent(this, EnterTextActivity::class.java).apply {
+        putExtra(IMAGE_URI_KEY, imageUriKey)
+        putExtra(BITMAP_WIDTH, bitmapWidth)
+        putExtra(BITMAP_HEIGHT, bitmapHeight)
+    }
+}
 class EnterTextActivity: AppCompatActivity(), View.OnClickListener {
     private var viewBitmap: Bitmap? = null
     private var pictureUri: Uri? = null

@@ -1,3 +1,4 @@
+
 package com.example.markiiimark.memeify
 
 import android.app.Activity
@@ -37,7 +38,7 @@ class TakePictureActivity: AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when(v.id) {
             R.id.pictureImageview -> takePictureWithCamera()
-            R.id.enterTextButton -> {}
+            R.id.enterTextButton -> moveToNextScreen()
             else -> println("No case satisfied")
         }
     }
@@ -78,6 +79,14 @@ class TakePictureActivity: AppCompatActivity(), View.OnClickListener {
         }
         lookingGoodTextView.visibility = View.VISIBLE
         pictureTaken = true
+    }
+
+    private fun moveToNextScreen() {
+        if (pictureTaken) {
+            startActivity(enterTextIntent(selectedPhotoPath, pictureImageview.width, pictureImageview.height))
+        } else {
+            Toaster.show(this, R.string.select_a_picture)
+        }
     }
 
     companion object {
