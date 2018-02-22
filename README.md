@@ -18,4 +18,13 @@ It's used to retrieve image data captured from camera.
  - For `Uri`, uses `intent.getParcelable<Uri>(TAG)`
  - For `Int`, uses `intent.getIntExtra(TAG, defaultValue)` 
 
+## Broadcast Intents
+```kotlin
+val mediaScanIntent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE)
+mediaScanIntent.data = Uri.fromFile(imageFile)
+sendBroadcast(mediaScanIntent)
+```
+- uses `ACTION_MEDIA_SCANNER_SCAN_FILE` action to attach data (in a form of a Uri)
+  to save image files to your local Android file system
+
 
